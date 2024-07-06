@@ -1,0 +1,5 @@
+cd react-project
+
+echo "Start Husky"
+npm run format:fix
+npm run lint
