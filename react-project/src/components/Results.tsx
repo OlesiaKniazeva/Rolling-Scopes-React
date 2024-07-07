@@ -4,9 +4,9 @@ import { getData } from "../api/api-data";
 
 type ResultsProps = {
   searchValue: string;
+  errorData: string;
 };
 type ResultsState = {
-  data: Array<DataObject>;
   loading: boolean;
 };
 
@@ -17,19 +17,25 @@ type DataObject = {
 };
 
 class Results extends Component<ResultsProps, ResultsState> {
-  state = { data: [], loading: true };
+  state = { loading: true };
+
+  data: DataObject[] = [];
 
   componentDidUpdate(prevProps: ResultsProps) {
     if (this.props.searchValue !== prevProps.searchValue) {
+      this.setState({ loading: true });
+
       getData(this.props.searchValue).then((data) => {
-        this.setState({ data: data, loading: false });
+        this.data = data;
+        this.setState({ loading: false });
       });
     }
   }
 
   componentDidMount() {
     getData("").then((data) => {
-      this.setState({ data: data, loading: false });
+      this.data = data;
+      this.setState({ loading: false });
     });
   }
 
@@ -38,11 +44,16 @@ class Results extends Component<ResultsProps, ResultsState> {
       return <div className="loading">Loading...</div>;
     }
 
-    if (this.state.data.length === 0) {
+    if (this.data.length === 0) {
       return <div className="no-results">No results found</div>;
     }
+    if (this.props.errorData) {
+      throw new Error(
+        "Error thrown from Results component with data: " + this.props.errorData
+      );
+    }
 
-    return <Cards data={this.state.data} />;
+    return <Cards data={this.data} />;
   }
 }
 
