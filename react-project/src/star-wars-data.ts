@@ -55,6 +55,6 @@ function getAnimalDescription(animal: Animal) {
   if (animal.feline) descriptions.push(ANIMAL_TRAITS.feline);
 
   return descriptions.length > 0
-    ? `This animal is ${descriptions.join(", ")}.`
+    ? `It's a ${descriptions.join(", ")}.`
     : "This animal has no specific traits defined.";
 }
