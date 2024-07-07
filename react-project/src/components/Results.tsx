@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { getAnimals } from "../api/star-wars-data";
-import Card from "./Card";
+import Cards from "./Cards";
 
 type ResultsProps = object;
 type ResultsState = object;
@@ -21,13 +21,7 @@ class Results extends Component<ResultsProps, ResultsState> {
   }
 
   render() {
-    return (
-      <div>
-        {this.state.animals.map((animal: Animal) => (
-          <Card key={animal.id} animal={animal}></Card>
-        ))}
-      </div>
-    );
+    return <Cards data={this.state.animals} />;
   }
 }
 

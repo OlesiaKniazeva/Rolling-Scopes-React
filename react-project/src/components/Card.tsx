@@ -1,10 +1,13 @@
-import { Animal } from "./Results";
+type CardType = {
+  name: string;
+  description: string;
+};
 
-function Card({ animal }: { animal: Animal }) {
+function Card({ name, description }: CardType) {
   return (
     <div>
-      <p>{animal.name}</p>
-      <p>{animal.description}</p>
+      <p>{name}</p>
+      <p>{description}</p>
     </div>
   );
 }
