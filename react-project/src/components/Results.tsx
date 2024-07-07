@@ -44,14 +44,15 @@ class Results extends Component<ResultsProps, ResultsState> {
       return <div className="loading">Loading...</div>;
     }
 
-    if (this.data.length === 0) {
-      return <div className="no-results">No results found</div>;
-    }
     if (this.props.errorData) {
       throw new Error(
         "Error thrown from Results component with data: " +
           this.props.errorData,
       );
+    }
+
+    if (this.data.length === 0) {
+      return <div className="no-results">No results found</div>;
     }
 
     return <Cards data={this.data} />;
