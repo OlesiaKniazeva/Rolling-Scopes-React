@@ -1,4 +1,5 @@
 import { ChangeEvent, Component } from "react";
+import Button from "./Button";
 
 type SearchProps = {
   handleValueChange: (value: string) => void;
@@ -7,22 +8,22 @@ type SearchProps = {
 class Search extends Component<SearchProps> {
   value = "";
 
-  handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
     this.props.handleValueChange(this.removeTrailingSpaces(this.value));
-  }
+  };
 
   removeTrailingSpaces(str: string) {
     return str.trim();
   }
 
-  updateValue(event: ChangeEvent<HTMLInputElement>) {
+  updateValue = (event: ChangeEvent<HTMLInputElement>) => {
     this.value = event.target.value;
-  }
+  };
 
   render() {
     return (
-      <div>
+      <div className="Search">
         <label htmlFor="search">Search</label>
         <input
           type="text"
@@ -30,7 +31,9 @@ class Search extends Component<SearchProps> {
           name="search"
           onChange={(e) => this.updateValue(e)}
         />
-        <button onClick={(e) => this.handleClick(e)}>Search</button>
+        <Button className="SearchButton" handleClick={this.handleClick}>
+          Search
+        </Button>
       </div>
     );
   }
