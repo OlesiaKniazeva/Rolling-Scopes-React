@@ -1,5 +1,4 @@
 async function fetchStarWarsAnimalsData() {
-  console.log("Here");
   try {
     const query = "https://stapi.co/api/v1/rest/animal/search?pageNumber=1";
     const response = await fetch(query);
@@ -11,7 +10,13 @@ async function fetchStarWarsAnimalsData() {
   }
 }
 
-type Animal = {
+export type Animal = {
+  name: string;
+  id: string;
+  description: string;
+};
+
+type AnimalRaw = {
   name: string;
   uid: string;
   avian: boolean;
@@ -24,7 +29,7 @@ type Animal = {
 export async function getAnimals() {
   try {
     const result = await fetchStarWarsAnimalsData();
-    return result.animals.map((animal: Animal) => {
+    return result.animals.map((animal: AnimalRaw) => {
       return {
         name: animal.name,
         id: animal.uid,
@@ -45,7 +50,7 @@ const ANIMAL_TRAITS = {
   feline: "a cat-like animal",
 };
 
-function getAnimalDescription(animal: Animal) {
+function getAnimalDescription(animal: AnimalRaw) {
   const descriptions = [];
 
   if (animal.avian) descriptions.push(ANIMAL_TRAITS.avian);

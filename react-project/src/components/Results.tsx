@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { getAnimals } from "./star-wars-data";
+import { getAnimals } from "../api/star-wars-data";
 import Card from "./Card";
 
 type ResultsProps = object;

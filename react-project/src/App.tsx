@@ -1,5 +1,5 @@
-import Results from "./Results";
-import Search from "./Search";
+import Results from "./components/Results";
+import Search from "./components/Search";
 
 function App() {
   return (
