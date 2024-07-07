@@ -1,25 +1,35 @@
 import { Component } from "react";
-import { getAnimals } from "../api/star-wars-data";
 import Cards from "./Cards";
+import { getData } from "../api/api-data";
 
-type ResultsProps = object;
+type ResultsProps = {
+  searchValue: string;
+};
 type ResultsState = {
-  animals: Animal[];
+  data: Array<DataObject>;
   loading: boolean;
 };
 
-export type Animal = {
+type DataObject = {
   name: string;
   id: string;
   description: string;
 };
 
 class Results extends Component<ResultsProps, ResultsState> {
-  state = { animals: [], loading: true };
+  state = { data: [], loading: true };
+
+  componentDidUpdate(prevProps: ResultsProps) {
+    if (this.props.searchValue !== prevProps.searchValue) {
+      getData(this.props.searchValue).then((data) => {
+        this.setState({ data: data, loading: false });
+      });
+    }
+  }
 
   componentDidMount() {
-    getAnimals().then((animals) => {
-      this.setState({ animals: animals, loading: false });
+    getData("").then((data) => {
+      this.setState({ data: data, loading: false });
     });
   }
 
@@ -28,7 +38,11 @@ class Results extends Component<ResultsProps, ResultsState> {
       return <div>Loading...</div>;
     }
 
-    return <Cards data={this.state.animals} />;
+    if (this.state.data.length === 0) {
+      return <div>No results found</div>;
+    }
+
+    return <Cards data={this.state.data} />;
   }
 }
 
