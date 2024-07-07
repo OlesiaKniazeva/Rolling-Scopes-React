@@ -19,7 +19,6 @@ class Search extends Component<SearchProps, SearchState> {
     this.state = {
       currentValue: savedValue,
     };
-    console.log("My value is : ", this.state.currentValue);
   }
 
   handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

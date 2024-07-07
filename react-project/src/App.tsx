@@ -20,7 +20,6 @@ class App extends Component<AppProps, AppState> {
       lastSearchValue: savedSearchTerm || "",
       errorData: "",
     };
-    console.log("State value: ", this.state.lastSearchValue);
   }
 
   setSearchValue = (value: string) => {
