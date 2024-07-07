@@ -16,7 +16,8 @@
   gap: 5px;
 }
 
-.loading, .no-results {
+.loading,
+.no-results {
   text-align: center;
   font-size: 30px;
   justify-content: center;

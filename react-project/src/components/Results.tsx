@@ -49,7 +49,8 @@ class Results extends Component<ResultsProps, ResultsState> {
     }
     if (this.props.errorData) {
       throw new Error(
-        "Error thrown from Results component with data: " + this.props.errorData
+        "Error thrown from Results component with data: " +
+          this.props.errorData,
       );
     }
 
