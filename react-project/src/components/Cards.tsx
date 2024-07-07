@@ -8,7 +8,7 @@ type DataType = {
 
 function Cards({ data }: { data: DataType[] }) {
   return (
-    <div>
+    <div className="Cards">
       {data.map((object) => (
         <Card
           key={object.id}

@@ -5,7 +5,7 @@ type CardType = {
 
 function Card({ name, description }: CardType) {
   return (
-    <div>
+    <div className="Card">
       <p>{name}</p>
       <p>{description}</p>
     </div>

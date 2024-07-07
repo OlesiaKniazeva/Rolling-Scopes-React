@@ -35,11 +35,11 @@ class Results extends Component<ResultsProps, ResultsState> {
 
   render() {
     if (this.state.loading) {
-      return <div>Loading...</div>;
+      return <div className="loading">Loading...</div>;
     }
 
     if (this.state.data.length === 0) {
-      return <div>No results found</div>;
+      return <div className="no-results">No results found</div>;
     }
 
     return <Cards data={this.state.data} />;
