@@ -33,7 +33,7 @@ class Results extends Component<ResultsProps, ResultsState> {
   }
 
   componentDidMount() {
-    getData("").then((data) => {
+    getData(this.props.searchValue).then((data) => {
       this.data = data;
       this.setState({ loading: false });
     });

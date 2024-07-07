@@ -13,14 +13,19 @@ type AppState = {
 };
 
 class App extends Component<AppProps, AppState> {
-  state = {
-    lastSearchValue: "",
-    errorData: "",
-  };
+  constructor(props: AppProps) {
+    super(props);
+    const savedSearchTerm = localStorage.getItem("searchTerm");
+    this.state = {
+      lastSearchValue: savedSearchTerm || "",
+      errorData: "",
+    };
+    console.log("State value: ", this.state.lastSearchValue);
+  }
 
   setSearchValue = (value: string) => {
-    console.log("Update value: ", value);
     this.setState({ lastSearchValue: value, errorData: "" });
+    localStorage.setItem("searchTerm", value);
   };
 
   passErrorToResults = (errorData: string) => {
@@ -30,7 +35,10 @@ class App extends Component<AppProps, AppState> {
   render() {
     return (
       <ErrorBoundary>
-        <Search handleValueChange={this.setSearchValue} />
+        <Search
+          value={this.state.lastSearchValue}
+          handleValueChange={this.setSearchValue}
+        />
 
         <Button
           className="ErrorButton"

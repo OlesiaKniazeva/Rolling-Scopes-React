@@ -3,22 +3,38 @@ import Button from "./Button";
 
 type SearchProps = {
   handleValueChange: (value: string) => void;
+  value: string;
 };
 
-class Search extends Component<SearchProps> {
-  value = "";
+type SearchState = {
+  currentValue: string;
+};
+
+class Search extends Component<SearchProps, SearchState> {
+  currentValue = "";
+
+  constructor(props: SearchProps) {
+    super(props);
+    const savedValue = this.props.value;
+    this.state = {
+      currentValue: savedValue,
+    };
+    console.log("My value is : ", this.state.currentValue);
+  }
 
   handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
-    this.props.handleValueChange(this.removeTrailingSpaces(this.value));
+    const trimmedValue = this.removeTrailingSpaces(this.state.currentValue);
+
+    this.props.handleValueChange(trimmedValue);
   };
 
-  removeTrailingSpaces(str: string) {
+  removeTrailingSpaces = (str: string) => {
     return str.trim();
-  }
+  };
 
   updateValue = (event: ChangeEvent<HTMLInputElement>) => {
-    this.value = event.target.value;
+    this.setState({ currentValue: event.target.value });
   };
 
   render() {
@@ -30,6 +46,7 @@ class Search extends Component<SearchProps> {
           id="search"
           name="search"
           onChange={(e) => this.updateValue(e)}
+          value={this.state.currentValue}
         />
         <Button className="SearchButton" handleClick={this.handleClick}>
           Search
