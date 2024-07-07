@@ -3,7 +3,10 @@ import { getAnimals } from "../api/star-wars-data";
 import Cards from "./Cards";
 
 type ResultsProps = object;
-type ResultsState = object;
+type ResultsState = {
+  animals: Animal[];
+  loading: boolean;
+};
 
 export type Animal = {
   name: string;
@@ -12,15 +15,19 @@ export type Animal = {
 };
 
 class Results extends Component<ResultsProps, ResultsState> {
-  state = { animals: [] };
+  state = { animals: [], loading: true };
 
   componentDidMount() {
     getAnimals().then((animals) => {
-      this.setState({ animals });
+      this.setState({ animals: animals, loading: false });
     });
   }
 
   render() {
+    if (this.state.loading) {
+      return <div>Loading...</div>;
+    }
+
     return <Cards data={this.state.animals} />;
   }
 }
