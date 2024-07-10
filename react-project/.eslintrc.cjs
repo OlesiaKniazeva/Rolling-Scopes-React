@@ -6,6 +6,9 @@ module.exports = {
       version: "detect",
     },
   },
+  globals: {
+    React: true,
+  },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -40,8 +43,8 @@ module.exports = {
     "react-compiler/react-compiler": "error",
     "prettier/prettier": ["error"],
     "no-empty-function": "error",
-    "no-console": "warn",
-    "no-unused-vars": "error",
+    "no-console": ["warn", { allow: ["error"] }],
+    // "no-unused-vars": "error",
     "no-duplicate-imports": "error",
     "no-empty": "error",
     "no-undef": "error",
