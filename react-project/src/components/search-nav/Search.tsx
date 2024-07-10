@@ -1,5 +1,19 @@
 import Button from "../button/Button";
+import { useState } from "react";
+
 function Search() {
+  const [searchValue, setSearchValue] = useState(() => {
+    return localStorage.getItem("searchValue") || "";
+  });
+
+  function saveSearchItem(searchValue: string) {
+    localStorage.setItem("searchValue", searchValue);
+  }
+
+  function updateSearchValue(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearchValue(event.target.value);
+  }
+
   return (
     <div className="Search">
       <label htmlFor="search">Search</label>
@@ -7,10 +21,17 @@ function Search() {
         type="text"
         id="search"
         name="search"
-        // onChange={(e) => this.updateValue(e)}
-        // value={this.state.currentValue}
+        onChange={updateSearchValue}
+        value={searchValue}
       />
-      <Button className="SearchButton">Search</Button>
+      <Button
+        className="SearchButton"
+        handleClick={() => {
+          saveSearchItem(searchValue);
+        }}
+      >
+        Search
+      </Button>
     </div>
   );
 }
