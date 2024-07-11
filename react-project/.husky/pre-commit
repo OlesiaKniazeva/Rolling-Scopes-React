@@ -1,4 +1,3 @@
 cd react-project
 
-echo "Start Husky"
 npx lint-staged
