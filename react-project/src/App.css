@@ -11,11 +11,6 @@
   padding: 10px;
 }
 
-.Search {
-  display: flex;
-  gap: 5px;
-}
-
 .loading,
 .no-results {
   text-align: center;
