@@ -10,7 +10,7 @@
     "format": "prettier ./src/ --check",
     "format:fix": "prettier --write .",
     "preview": "vite preview",
-    "prepare": "cd .. && husky react-project/.husky"
+    "prepare": "husky"
   },
   "dependencies": {
     "react": "^18.3.1",
