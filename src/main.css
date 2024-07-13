@@ -17,6 +17,8 @@ body {
   flex-direction: column;
   height: 100vh;
   padding: 10px;
+  align-items: center;
+  gap: 20px;
 }
 
 main {
