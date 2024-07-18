@@ -6,7 +6,7 @@
 }
 
 .search > label {
-  font-size: 20px; 
+  font-size: 20px;
   font-weight: 600;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .search > button {
-  background-color: #007bff;
+  background-color: #348b65;
   color: white;
   border: none;
   border-radius: 5px;
@@ -39,4 +39,9 @@
 
 .search > button:active {
   background-color: #0056b3;
+}
+
+.search > button:disabled {
+  background-color: #cccccc;
+  color: #999999;
 }
