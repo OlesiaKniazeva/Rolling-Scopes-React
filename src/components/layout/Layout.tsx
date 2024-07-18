@@ -1,13 +1,16 @@
-import { ReactNode } from "react";
 import Header from "../header/Header";
-import Main from "../main/Main";
 import Footer from "../footer/Footer";
+import { Outlet } from "react-router-dom";
+import SearchNav from "../search-nav/SearchNav";
+import PaginationBar from "../pagination/PaginationBar";
 
-export default function Layout({ children }: { children: ReactNode }) {
+export default function Layout() {
   return (
     <>
       <Header />
-      <Main>{children}</Main>
+      <SearchNav />
+      <Outlet />
+      <PaginationBar />
       <Footer />
     </>
   );
