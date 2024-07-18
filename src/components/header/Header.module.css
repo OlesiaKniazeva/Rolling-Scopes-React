@@ -1,3 +1,19 @@
 .header {
-  font-size: 3rem;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 10px;
+  align-items: center;
+  background-color: #348b65;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.header .logo {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 10px;
 }
