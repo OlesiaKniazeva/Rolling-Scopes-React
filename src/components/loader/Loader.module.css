@@ -1,0 +1,19 @@
+.loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 auto;
+  min-height: 300px;
+}
+
+.loader img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.loader p {
+  font-size: 1.2rem;
+  color: #333;
+}

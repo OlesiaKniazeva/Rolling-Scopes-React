@@ -1,0 +1,8 @@
+magenta=`tput setaf 5`
+reset=`tput sgr0`
+
+stash_count=$(git stash list | wc -l | tr -d ' ')
+
+if [ "$stash_count" -gt 0 ]; then
+    echo "${magenta}You have stashed changes.${reset}"
+fi

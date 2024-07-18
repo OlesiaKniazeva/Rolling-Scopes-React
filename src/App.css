@@ -1,0 +1,16 @@
+.loading,
+.no-results {
+  text-align: center;
+  font-size: 30px;
+  justify-content: center;
+  grid-column: 1/ 3;
+}
+
+main {
+  padding: 20px;
+}
+
+footer {
+  text-align: center;
+  font-size: 1rem;
+}
