@@ -1,13 +1,25 @@
-async function fetchData(URL: string) {
+const requestOptions: object = {
+  method: "GET",
+  redirect: "follow",
+};
+
+function savePagesAmount(numFound: number, limit: number) {
+  const totalPages = Math.ceil(numFound / limit);
+
+  localStorage.setItem("totalPages", String(totalPages));
+}
+
+async function fetchData(URL: string, limit: number) {
   const FETCH_OBJECT_NAME = "docs";
   try {
-    const response = await fetch(URL);
+    const response = await fetch(URL, requestOptions);
 
     if (!response.ok) {
       console.error("Network response was not ok");
     }
 
     const data = await response.json();
+    savePagesAmount(data.numFound, limit);
     return data[FETCH_OBJECT_NAME];
   } catch (error) {
     console.error("Error fetching data:", error);
