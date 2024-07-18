@@ -38,27 +38,27 @@ function createDescriptionData(obj: DataObject) {
   };
 }
 
-function formatTheData(data: Array<DataObject>) {
+function formatTheData(data: DataObject[]) {
   return data.map((obj) => {
     return {
       name: obj.title,
-      id: obj._version_,
+      id: String(crypto.randomUUID()),
       description: createDescriptionData(obj),
     };
   });
 }
 
-export async function getData(searchTerm = "", limit = 20, offset = 0) {
+export async function getBooks(searchTerm = "", page = 1, limit = 20) {
   try {
     const BASE_URL = "http://openlibrary.org/search.json";
     let search_settings;
     if (searchTerm === "") {
-      search_settings = `?q=book&limit=${limit}&offset=${offset}`;
+      search_settings = `?q=book&page=${page}&limit=${limit}`;
     } else {
-      search_settings = `?q=book&title=${searchTerm}&limit=${limit}&offset=${offset}`;
+      search_settings = `?title=${searchTerm}&page=${page}&limit=${limit}`;
     }
     const SEARCH_URL = BASE_URL + search_settings;
-    const result = await fetchData(SEARCH_URL);
+    const result = await fetchData(SEARCH_URL, limit);
     return formatTheData(result);
   } catch (error) {
     console.error("Problem with API!", error);
