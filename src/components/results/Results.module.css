@@ -1,0 +1,15 @@
+.Results {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.content {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
